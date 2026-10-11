@@ -129,3 +129,7 @@ tests/runner/*
 junit.xml
 .env*
 .playwright-mcp/
+
+# Ted dashboard previews and Pages build
+output/
+site/
