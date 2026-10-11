@@ -22,6 +22,7 @@ export interface Strings {
     month: (index: number) => string;
     title: (who: string) => string;
     summary: (values: {[key: string]: string}) => string;
+    topLanguages: (names: string[]) => string; // empty when there are none
 }
 
 const MONTHS_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -48,7 +49,8 @@ export const STRINGS: Record<TedLocale, Strings> = {
         title: who => `${who} on GitHub, past 12 months`,
         summary: v =>
             `${v.contributions} contributions, ${v.commits} commits, ${v.pullRequests} pull requests, ` +
-            `${v.activeDays} active days, longest streak ${v.longestStreak} days. Top languages: ${v.languages}.`
+            `${v.activeDays} active days, longest streak ${v.longestStreak} days.`,
+        topLanguages: names => (names.length ? ` Top languages: ${names.join(', ')}.` : '')
     },
     'zh-TW': {
         kicker: login => `GITHUB / ${login.toUpperCase()}`,
@@ -68,7 +70,8 @@ export const STRINGS: Record<TedLocale, Strings> = {
         title: who => `${who} 過去 12 個月的 GitHub 動態`,
         summary: v =>
             `${v.contributions} 次貢獻、${v.commits} 個 Commit、${v.pullRequests} 個 Pull Request，` +
-            `活躍 ${v.activeDays} 天，最長連續 ${v.longestStreak} 天。主要語言：${v.languages}。`
+            `活躍 ${v.activeDays} 天，最長連續 ${v.longestStreak} 天。`,
+        topLanguages: names => (names.length ? `主要語言：${names.join('、')}。` : '')
     }
 };
 

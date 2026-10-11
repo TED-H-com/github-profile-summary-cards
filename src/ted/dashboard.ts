@@ -347,16 +347,15 @@ function summary(stats: TedStats, strings: Strings): string {
     const top = [...stats.languages]
         .sort((a, b) => b.count - a.count)
         .slice(0, 3)
-        .map(language => language.name)
-        .join(', ');
-    return strings.summary({
+        .map(language => language.name);
+    const numbers = strings.summary({
         contributions: formatNumber(totals.contributions),
         commits: formatNumber(totals.commits),
         pullRequests: formatNumber(totals.pullRequests),
         activeDays: formatNumber(totals.activeDays),
-        longestStreak: formatNumber(totals.longestStreak),
-        languages: top
+        longestStreak: formatNumber(totals.longestStreak)
     });
+    return numbers + strings.topLanguages(top);
 }
 
 export function renderDashboard(stats: TedStats, options: DashboardOptions): string {

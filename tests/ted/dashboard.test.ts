@@ -87,6 +87,25 @@ describe('dashboard renderer', () => {
         }
     });
 
+    it('lists the top languages in the description the way each language writes a list', () => {
+        const top = [...fixture.languages]
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 3)
+            .map(language => language.name);
+        const desc = (stats: TedStats, locale: 'en' | 'zh-TW'): string =>
+            new JSDOM(renderDashboard(stats, {locale, frame: 'card', layout: 'medium', mode: 'light'}), {
+                contentType: 'image/svg+xml'
+            }).window.document.querySelector('desc')!.textContent ?? '';
+        expect(desc(fixture, 'en')).toMatch(new RegExp(`days\\. Top languages: ${top.join(', ')}\\.$`));
+        expect(desc(fixture, 'zh-TW')).toMatch(new RegExp(`天。主要語言：${top.join('、')}。$`));
+
+        const none: TedStats = {...fixture, languages: []};
+        expect(desc(none, 'en')).toMatch(/days\.$/);
+        expect(desc(none, 'en')).not.toContain('Top languages');
+        expect(desc(none, 'zh-TW')).toMatch(/天。$/);
+        expect(desc(none, 'zh-TW')).not.toContain('主要語言');
+    });
+
     it('shortens a long language name on the card but keeps it whole in the description', () => {
         const name = 'ThisIsAVeryLongLanguageNameThatShouldBeTruncatedSoItDoesNotBreakTheLayout';
         const longData: TedStats = {...fixture, languages: [{name, count: 100}]};
