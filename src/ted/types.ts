@@ -14,7 +14,7 @@ export interface TedLanguage {
 export interface TedStats {
     login: string;
     name?: string;
-    generatedAt: string; // YYYY-MM-DD in the configured time zone
+    generatedAt: string; // YYYY-MM-DD, UTC
     totals: {
         contributions: number;
         commits: number;
