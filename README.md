@@ -1,3 +1,36 @@
+## Ted's fork
+
+I forked this project to draw one dashboard instead of five cards, for my [GitHub profile](https://github.com/teddashh) and the [ted-h.com](https://ted-h.com) homepage.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://teddashh.github.io/github-profile-summary-cards/teddashh/en/card-medium-dark.svg">
+    <img src="https://teddashh.github.io/github-profile-summary-cards/teddashh/en/card-medium-light.svg" width="100%" alt="Ted Huang's GitHub activity over the past 12 months: totals, contributions by week, commits by hour in UTC, and top languages.">
+  </picture>
+</p>
+
+- One SVG: five numbers, then contributions by week, commits by hour and top languages.
+- Drawn in the ted-h.com style, black and white with hairline rules. Inter and Noto Sans TC are embedded, because an image cannot load web fonts. The rules are in [DESIGN.md](DESIGN.md).
+- English and Traditional Chinese, light and dark, and three widths for desktop, tablet and phone.
+- Public data only. The workflow runs with its own `GITHUB_TOKEN`, which sees what any visitor sees, and it refuses my personal token. Hours are in UTC.
+- [A GitHub Actions workflow](.github/workflows/ted-dashboard.yml) rebuilds everything once a day and publishes it to [GitHub Pages](https://teddashh.github.io/github-profile-summary-cards/).
+
+My changes live in `src/ted/`, `scripts/ted/`, `tests/ted/` and that workflow. The upstream cards below are untouched. Thanks to [vn7n24fzkq](https://github.com/vn7n24fzkq/github-profile-summary-cards) for the original.
+
+### 這個 fork
+
+我 fork 這個專案，是想把原本的五張卡片改成一張統計圖，放在我的 [GitHub 個人頁](https://github.com/teddashh) 和 [ted-h.com](https://ted-h.com) 首頁。
+
+- 一張 SVG：上面五個數字，下面是每週貢獻、Commit 時段和主要語言三張圖。
+- 照 ted-h.com 的風格重畫，黑白配細線。圖片沒辦法載入網路字型，所以 Inter 和 Noto Sans TC 直接嵌在 SVG 裡。設計規則寫在 [DESIGN.md](DESIGN.md)。
+- 有中文和英文、淺色和深色，桌機、平板、手機各有一種寬度。
+- 只用公開資料。workflow 用它自己的 `GITHUB_TOKEN`，看到的和一般訪客一樣，拿我本人的 token 來跑會直接拒絕。時段用 UTC。
+- [GitHub Actions](.github/workflows/ted-dashboard.yml) 每天重算一次，發布到 [GitHub Pages](https://teddashh.github.io/github-profile-summary-cards/)。
+
+我改的東西都在 `src/ted/`、`scripts/ted/`、`tests/ted/` 和這個 workflow，下面原作者的卡片沒有動。謝謝 [vn7n24fzkq](https://github.com/vn7n24fzkq/github-profile-summary-cards) 做了原版。
+
+---
+
 <div align="center">
    <h1>GitHub Profile Summary Cards</h1>
 
