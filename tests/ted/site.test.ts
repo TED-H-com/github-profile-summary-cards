@@ -72,6 +72,18 @@ describe('site generation and CLI', () => {
             variantsCount++;
         }
         expect(variantsCount).toBe(18);
+
+        // Phones get the narrow card; the Chinese files sit in their own list.
+        expect(indexHtml).toMatch(
+            /<source media="\(max-width: 640px\)"[^>]*srcset="teddashh\/en\/card-narrow-light\.svg">/
+        );
+        expect(indexHtml).toMatch(/<h1>[^<]+<\/h1>/);
+        const lists = indexHtml.match(/<ul>[\s\S]*?<\/ul>/g)!;
+        expect(lists).toHaveLength(2);
+        expect(lists[0].match(/<li>/g)).toHaveLength(10); // stats.json and the English files
+        expect(lists[0]).not.toMatch(/zh-TW/);
+        expect(lists[1].match(/<li>/g)).toHaveLength(9);
+        expect(lists[1].match(/<li><a href="teddashh\/zh-TW\//g)).toHaveLength(9);
         expect(written.length).toBe(1 + 1 + 1 + 18); // .nojekyll, index.html, stats.json, 18 variants
 
         const sortedWritten = [...written].sort();
