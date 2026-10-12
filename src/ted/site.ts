@@ -13,9 +13,13 @@ function escapeHtml(value: string): string {
         .replace(/'/g, '&#39;');
 }
 
-// A plain page at the Pages root that shows the card and lists every file.
+// A plain page at the Pages root: the card, then every file, English and data on
+// the left, Chinese on the right. Phones get the narrow card.
 function indexHtml(login: string, title: string, files: string[]): string {
-    const items = files.map(file => `<li><a href="${login}/${file}">${file}</a></li>`).join('\n');
+    const list = (names: string[]): string =>
+        names.map(file => `<li><a href="${login}/${file}">${file}</a></li>`).join('\n');
+    const zh = files.filter(file => file.startsWith('zh-TW/'));
+    const rest = files.filter(file => !file.startsWith('zh-TW/'));
     return `<!doctype html>
 <html lang="en">
 <head>
@@ -25,23 +29,37 @@ function indexHtml(login: string, title: string, files: string[]): string {
 <style>
 body{margin:0;padding:48px 24px 64px;background:#fff;color:#030303;font:15px/1.6 Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 main{max-width:1000px;margin:0 auto}
-h1{margin:0 0 24px;font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#676f7b}
+h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 img{display:block;width:100%;height:auto}
-ul{margin:32px 0 0;padding:0;list-style:none;columns:2;font-size:14px}
+h2{margin:48px 0 8px;font-size:13px;font-weight:500;letter-spacing:.16em;color:#676f7b}
+p{margin:0 0 20px;color:#676f7b}
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 32px}
+ul{margin:0;padding:0;list-style:none;font-size:14px}
+li{padding:2px 0;white-space:nowrap}
 a{color:inherit}
-@media (prefers-color-scheme: dark){body{background:#0a0a0a;color:#fafafa}h1{color:#a1a1a1}}
+@media (max-width:640px){body{padding:32px 20px 48px}picture{display:block;max-width:460px;margin:0 auto}}
+@media (prefers-color-scheme: dark){body{background:#0a0a0a;color:#fafafa}h2,p{color:#a1a1a1}}
 </style>
 </head>
 <body>
 <main>
-<h1>GitHub / ${login}</h1>
+<h1>${title}</h1>
 <picture>
+<source media="(max-width: 640px) and (prefers-color-scheme: dark)" width="600" height="1348" srcset="${login}/en/card-narrow-dark.svg">
+<source media="(max-width: 640px)" width="600" height="1348" srcset="${login}/en/card-narrow-light.svg">
 <source media="(prefers-color-scheme: dark)" srcset="${login}/en/card-medium-dark.svg">
-<img src="${login}/en/card-medium-light.svg" alt="${title}">
+<img src="${login}/en/card-medium-light.svg" width="1000" height="409" alt="${title}">
 </picture>
+<h2>FILES</h2>
+<p>Rebuilt every day from public GitHub data. Hours are in UTC.</p>
+<div class="files">
 <ul>
-${items}
+${list(rest)}
 </ul>
+<ul>
+${list(zh)}
+</ul>
+</div>
 </main>
 </body>
 </html>
