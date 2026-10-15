@@ -35,7 +35,7 @@ jobs:
             - name: Collect and render
               env:
                   GITHUB_TOKEN: ${{ github.token }}
-                  USERNAME: ${{ github.repository_owner }}
+                  USERNAME: teddashh
                   EXCLUDE_REPOS: ''
                   OUTPUT_DIR: site
               run: node lib/ted/cli.js
