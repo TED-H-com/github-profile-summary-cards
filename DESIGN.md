@@ -114,7 +114,7 @@ Don't:
 
 ## 8. Responsive behavior
 
-Files live at `https://teddashh.github.io/github-profile-summary-cards/<login>/<locale>/<frame>-<layout>-<mode>.svg`,
+Files live at `https://ted-h-com.github.io/github-profile-summary-cards/<login>/<locale>/<frame>-<layout>-<mode>.svg`,
 with `<locale>` `en` or `zh-TW`. Cards come in light and dark; bare files in light only.
 
 - **GitHub profile README.** `<picture>` with card files: narrow when the window is 1100px or narrower,
