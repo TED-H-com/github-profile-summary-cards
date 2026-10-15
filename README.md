@@ -15,7 +15,7 @@ I forked this project to draw one dashboard instead of five cards, for my [GitHu
 - Public data only. The workflow runs with its own `GITHUB_TOKEN`, which sees what any visitor sees, and it refuses my personal token. Hours are in UTC.
 - [A GitHub Actions workflow](.github/workflows/ted-dashboard.yml) rebuilds everything once a day and publishes it to [GitHub Pages](https://ted-h-com.github.io/github-profile-summary-cards/).
 
-My changes live in `src/ted/`, `scripts/ted/`, `tests/ted/` and that workflow. The upstream cards below are untouched. Thanks to [vn7n24fzkq](https://github.com/vn7n24fzkq/github-profile-summary-cards) for the original.
+My changes live in `src/ted/`, `scripts/ted/`, `tests/ted/` and that workflow, plus security updates to the dependency versions in `package.json`. The upstream cards below are untouched. Thanks to [vn7n24fzkq](https://github.com/vn7n24fzkq/github-profile-summary-cards) for the original.
 
 ### 這個 fork
 
@@ -27,7 +27,7 @@ My changes live in `src/ted/`, `scripts/ted/`, `tests/ted/` and that workflow. T
 - 只用公開資料。workflow 用它自己的 `GITHUB_TOKEN`，看到的和一般訪客一樣，拿我本人的 token 來跑會直接拒絕。時段用 UTC。
 - [GitHub Actions](.github/workflows/ted-dashboard.yml) 每天重算一次，發布到 [GitHub Pages](https://ted-h-com.github.io/github-profile-summary-cards/)。
 
-我改的東西都在 `src/ted/`、`scripts/ted/`、`tests/ted/` 和這個 workflow，下面原作者的卡片沒有動。謝謝 [vn7n24fzkq](https://github.com/vn7n24fzkq/github-profile-summary-cards) 做了原版。
+我改的東西都在 `src/ted/`、`scripts/ted/`、`tests/ted/` 和這個 workflow，另外更新了 `package.json` 裡有安全漏洞的套件版本。下面原作者的卡片沒有動。謝謝 [vn7n24fzkq](https://github.com/vn7n24fzkq/github-profile-summary-cards) 做了原版。
 
 ---
 
