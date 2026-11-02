@@ -130,6 +130,7 @@ export async function handleCard(
                         render(username, theme, override, token)
                     );
                     res.setHeader('Content-Type', 'image/svg+xml');
+                    res.setHeader('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline';");
                     res.setHeader('Cache-Control', CONST_CACHE_CONTROL);
                     res.send(applyAnimation(cardSVG, animation, req.query.duration));
                     // Don't block the response on analytics, but keep the invocation
@@ -188,6 +189,7 @@ export async function handleCard(
         // Every error class ships to Axiom — the searchable 30-day history.
         waitUntil(shipErrorRecord(err, eventName, username, errorType));
         res.setHeader('Content-Type', 'image/svg+xml');
+        res.setHeader('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline';");
         // Cache errors long enough that repeat views don't re-invoke the function
         // while we're rate limited (GitHub's GraphQL window is a full hour), but
         // short enough to recover promptly once the quota resets.
