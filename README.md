@@ -92,65 +92,58 @@ My changes live in `src/ted/`, `scripts/ted/`, `tests/ted/` and that workflow, p
 ![](docs/preview/themes/nord_bright.svg)
 
 `http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username={username}&theme={theme_name}`
-- Accept url parameters
-  - theme
-    - Theme name
-  - username
-    - Username
-  - name
-    - Optional override for the displayed name/title (e.g. `name=Casper`). Defaults to `login (name)`; long values are elided to fit on one line (~22 chars).
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `username` | string | Yes | The GitHub username or organization login |
+| `theme` | string | No | Theme name (e.g. `default`, `dark`, `radical`) |
+| `name` | string | No | Optional override for the displayed name/title (e.g. `name=Casper`). Defaults to `login (name)`; long values are elided to fit on one line (~22 chars). |
+
 ### Top languages used in repository card
 ![](docs/preview/api/repos-per-language.svg)
 
 `http://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username={username}&theme={theme_name}&exclude={exclude}`
-- Accept url parameters
-  - theme
-    - Theme name
-  - username
-    - Username
-  - exclude:
-    - A comma separated list of languages to exclude, e.g., exclude=java,rust,jupyter%20Notebook
-      - You can represent a space in the language list by using '%20' when you want to include a space.
-    - You can found the supported languages in [here](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)
-  - exclude_repos:
-    - A comma separated list of repository names to exclude (case-insensitive), e.g., exclude_repos=dotfiles,my-fork
-    - `owner/repo` entries also match, e.g., exclude_repos=vn7n24fzkq/dotfiles
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `username` | string | Yes | The GitHub username or organization login |
+| `theme` | string | No | Theme name |
+| `exclude` | string | No | A comma separated list of languages to exclude, e.g., `exclude=java,rust,jupyter%20Notebook`. See [supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml) |
+| `exclude_repos` | string | No | A comma separated list of repository names to exclude (case-insensitive), e.g., `exclude_repos=dotfiles,my-fork` or `exclude_repos=vn7n24fzkq/dotfiles` |
 
 ### Top languages in commits card
 ![](docs/preview/api/most-commit-language.svg)
 
 `http://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username={username}&theme={theme_name}&exclude={exclude}`
-- Accept url parameters
-  - theme
-    - Theme name
-  - username
-    - Username
-  - exclude:
-    - A comma separated list of languages to exclude, e.g., exclude=java,rust,jupyter%20Notebook
-      - You can represent a space in the language list by using '%20' when you want to include a space.
-    - You can found the supported languages in [here](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)
-  - exclude_repos:
-    - A comma separated list of repository names to exclude (case-insensitive), e.g., exclude_repos=dotfiles,my-fork
-    - Commits can come from other owners' repos, so `owner/repo` entries also match, e.g., exclude_repos=someorg/website
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `username` | string | Yes | The GitHub username or organization login |
+| `theme` | string | No | Theme name |
+| `exclude` | string | No | A comma separated list of languages to exclude, e.g., `exclude=java,rust,jupyter%20Notebook` |
+| `exclude_repos` | string | No | A comma separated list of repository names to exclude (case-insensitive), e.g., `exclude_repos=someorg/website` |
 
 ### GitHub stats card
 ![](docs/preview/api/stats.svg)
 
 `http://github-profile-summary-cards.vercel.app/api/cards/stats?username={username}&theme={theme_name}`
-- Accept url parameters
-  - theme
-    - Theme name
-  - username
-    - Username
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `username` | string | Yes | The GitHub username or organization login |
+| `theme` | string | No | Theme name |
+| `hide_logo` | boolean | No | Set to `true` to remove the GitHub logo on the right |
 
 ### Productive time card
 ![](docs/preview/api/productive-time.svg)
 
 `http://github-profile-summary-cards.vercel.app/api/cards/productive-time?username={username}&theme={theme_name}&utcOffset={utcOffset}`
-- accept url parameters
-  - theme
-  - username
-  - utcOffset
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `username` | string | Yes | The GitHub username |
+| `theme` | string | No | Theme name |
+| `utcOffset` | number | No | The UTC offset of your timezone (e.g., `8` for UTC+8) |
 
 ### Custom colors
 
