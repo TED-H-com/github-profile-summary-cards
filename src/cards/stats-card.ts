@@ -6,12 +6,30 @@ import {getContributionTotals} from '../utils/contribution-history';
 import {createStatsCard as statsCard} from '../templates/stats-card';
 import {CardGenerationOptions, writeThemedCards} from '../utils/card-generation';
 
+/**
+ * Creates the "Stats" card and writes it to disk.
+ *
+ * @param {string} username - The GitHub username.
+ * @param {string} token - The GitHub API token.
+ * @param {CardGenerationOptions} [options={}] - Optional generation options (e.g., theme, animation).
+ * @returns {Promise<void>}
+ */
 export const createStatsCard = async function (username: string, token: string, options: CardGenerationOptions = {}) {
     const statsData = await getStatsData(username, token);
     // use 3- prefix for sort in preview
     writeThemedCards('3-stats', themeName => getStatsSVG(statsData, themeName), options);
 };
 
+/**
+ * Generates the SVG string for the "Stats" card with a specific theme.
+ *
+ * @param {string} username - The GitHub username.
+ * @param {string} themeName - The name of the theme to apply.
+ * @param {string} token - The GitHub API token.
+ * @param {ThemeColorOverride} [override] - Optional color overrides for the theme.
+ * @param {boolean} [hideLogo=false] - Whether to hide the GitHub logo on the card.
+ * @returns {Promise<string>} The generated SVG string.
+ */
 export const getStatsSVGWithThemeName = async function (
     username: string,
     themeName: string,

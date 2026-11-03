@@ -3,6 +3,15 @@ import {getProductiveTime} from '../github-api/productive-time';
 import {createProductiveCard as productiveTimeCard} from '../templates/productive-time-card';
 import {CardGenerationOptions, writeThemedCards} from '../utils/card-generation';
 
+/**
+ * Creates the "Productive Time" card and writes it to disk.
+ *
+ * @param {string} username - The GitHub username.
+ * @param {number} utcOffset - The UTC offset to adjust commit times.
+ * @param {string} token - The GitHub API token.
+ * @param {CardGenerationOptions} [options={}] - Optional generation options (e.g., theme, animation).
+ * @returns {Promise<void>}
+ */
 export const createProductiveTimeCard = async function (
     username: string,
     utcOffset: number,
@@ -18,6 +27,16 @@ export const createProductiveTimeCard = async function (
     );
 };
 
+/**
+ * Generates the SVG string for the "Productive Time" card with a specific theme.
+ *
+ * @param {string} username - The GitHub username.
+ * @param {string} themeName - The name of the theme to apply.
+ * @param {number} utcOffset - The UTC offset to adjust commit times.
+ * @param {string} token - The GitHub API token.
+ * @param {ThemeColorOverride} [override] - Optional color overrides for the theme.
+ * @returns {Promise<string>} The generated SVG string.
+ */
 export const getProductiveTimeSVGWithThemeName = async function (
     username: string,
     themeName: string,
