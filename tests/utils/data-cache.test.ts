@@ -344,7 +344,8 @@ describe('primeDataCache (batched MGET)', () => {
 
         const primed = await primeDataCache(['k1', 'k2']);
         expect(fetchSpy).toHaveBeenCalledTimes(1);
-        expect(String(fetchSpy.mock.calls[0][0])).toContain('/mget/k1/k2');
+        expect(fetchSpy.mock.calls[0][1].method).toBe('POST');
+        expect(fetchSpy.mock.calls[0][1].body).toContain('"k1","k2"');
 
         const fetcher = jest.fn();
         await expect(withDataCache('k1', fetcher, {primed})).resolves.toBe('v1');
