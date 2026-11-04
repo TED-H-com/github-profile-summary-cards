@@ -255,8 +255,9 @@ export async function primeDataCache(keys: string[]): Promise<PrimedReads> {
     const primed: PrimedReads = new Map();
     if (keys.length === 0 || !kvConfigured() || !isKvHealthy()) return primed;
     try {
-        const path = keys.map(encodeURIComponent).join('/');
-        const res = await fetch(`${process.env.KV_REST_API_URL}/mget/${path}`, {
+        const res = await fetch(`${process.env.KV_REST_API_URL}/mget`, {
+            method: 'POST',
+            body: JSON.stringify(keys),
             headers: {Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`},
             signal: AbortSignal.timeout(KV_TIMEOUT_MS)
         });

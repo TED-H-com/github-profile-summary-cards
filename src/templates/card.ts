@@ -7,6 +7,9 @@ import {JSDOM} from 'jsdom';
 // amount instead of letting extra lines push content off the bottom.
 export const TITLE_LINE_HEIGHT = 24;
 
+const sharedDom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+const sharedDocument = sharedDom.window.document;
+
 export class Card {
     title: string;
     width: number;
@@ -22,8 +25,8 @@ export class Card {
         this.xPadding = xPadding;
         this.yPadding = yPadding;
         // use fake dom let us can get html element
-        const fakeDom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
-        this.body = d3.select(fakeDom.window.document).select('body');
+        const div = sharedDocument.createElement('div');
+        this.body = d3.select(div) as any;
         const svgRoot = this.body
             .append('div')
             .attr('class', 'container')
